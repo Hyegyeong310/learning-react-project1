@@ -25,13 +25,18 @@ RUN curl https://raw.githubusercontent.com/creationix/nvm/v0.33.2/install.sh | b
 
 ENV NODE_PATH $NVM_DIR/v$NODE_VERSION/lib/node_modules
 ENV PATH      $NVM_DIR/versions/node/v$NODE_VERSION/bin:$PATH
+# ↑↑↑ docker에 nvm install ↑↑↑
 
-RUN mkdir /usr/src/app
-WORKDIR /usr/src/app
+# RUN mkdir /usr/src/app
+# WORKDIR /usr/src/app
 
-ENV PATH /usr/src/app/node_modules/ .bin:$PATH
+# RUN npm install -g create-react-app
+# RUN create-react-app hello-react
+# WORKDIR /usr/src/app/hello-react
 
-COPY package.json /usr/src/app/package.json
-RUN npm install --silent
+# ENV PATH /usr/src/app/hello-react/node_modules/ .bin:$PATH
 
-CMD [ "npm", "start" ]
+# COPY package.json /usr/src/app/hello-react/package.json
+# RUN npm install --silent
+
+# CMD [ "yarn", "start" ]
