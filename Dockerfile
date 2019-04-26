@@ -32,22 +32,18 @@ SHELL ["/bin/bash", "-c"]
 WORKDIR /apps
 
 RUN git clone https://github.com/Hyegyeong310/learning-react-project1.git -o StrictHostKeyChecking=no
-WORKDIR /apps/learning-react-project1
+WORKDIR /apps/learning-react-project1/hello-react
 
-RUN npm install
+RUN rm yarn.lock
 RUN rm package-lock.json
+RUN yarn
 
-EXPOSE 8000
-EXPOSE 5000
+ENV HOST 0.0.0.0
+EXPOSE 3000
 
-CMD [ "npm", "start" ]
+CMD [ "yarn", "start" ]
 # RUN npm i -g npm && npm i -g yarn
 # RUN rm yarn.lock
 # RUN rm package-lock.json
 # RUN yarn 
 # RUN yarn build
-
-# ENV HOST 0.0.0.0
-# EXPOSE 3000
-
-# CMD [ "yarn", "start" ]
