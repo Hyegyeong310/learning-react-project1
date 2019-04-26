@@ -24,4 +24,30 @@ RUN curl https://raw.githubusercontent.com/creationix/nvm/v0.33.2/install.sh | b
     && nvm use default
 
 ENV NODE_PATH $NVM_DIR/v$NODE_VERSION/lib/node_modules
-ENV PATH      $NVM_DIR/v$NODE_VERSION/bin:$PATH
+ENV PATH      $NVM_DIR/versions/node/v$NODE_VERSION/bin:$PATH
+
+RUN mkdir /apps
+
+SHELL ["/bin/bash", "-c"]
+WORKDIR /apps
+
+RUN git clone https://github.com/Hyegyeong310/learning-react-project1.git -o StrictHostKeyChecking=no
+WORKDIR /apps/learning-react-project1
+
+RUN npm install
+RUN rm package-lock.json
+
+EXPOSE 8000
+EXPOSE 5000
+
+CMD [ "npm", "start" ]
+# RUN npm i -g npm && npm i -g yarn
+# RUN rm yarn.lock
+# RUN rm package-lock.json
+# RUN yarn 
+# RUN yarn build
+
+# ENV HOST 0.0.0.0
+# EXPOSE 3000
+
+# CMD [ "yarn", "start" ]
